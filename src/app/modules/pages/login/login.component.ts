@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { debounceTime, distinctUntilChanged, map, Observable } from 'rxjs';
 
 const states = [
@@ -67,11 +67,12 @@ const states = [
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent {
   constructor() {}
 
-  public search(text$: Observable<string>) {
+  public search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
@@ -83,5 +84,4 @@ export class LoginComponent {
               .slice(0, 10)
       )
     );
-  }
 }
