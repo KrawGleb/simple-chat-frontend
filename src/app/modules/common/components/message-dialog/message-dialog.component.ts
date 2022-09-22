@@ -7,6 +7,7 @@ import { User } from '../../models/user.model';
 import { Message } from '../../models/message.model';
 import { UsersService } from '../../services/users.service';
 import { MessagesService } from '../../services/messages.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-message-dialog',
@@ -25,6 +26,7 @@ export class MessageDialogComponent implements OnInit {
     private readonly dialogRef: MatDialogRef<MessageDialogComponent>,
     private readonly usersService: UsersService,
     private readonly messagesService: MessagesService,
+    private readonly toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -57,7 +59,12 @@ export class MessageDialogComponent implements OnInit {
 
     this.messagesService
       .sendMessage(message)
-      .pipe(tap(() => this.dialogRef.close()))
+      .pipe(
+        tap(() => {
+          this.toastr.success('', 'Message send!');
+          this.dialogRef.close();
+        })
+      )
       .subscribe();
   }
 

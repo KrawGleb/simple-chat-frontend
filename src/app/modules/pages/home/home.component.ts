@@ -7,12 +7,15 @@ import {
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 import { dropDownAnimation } from '../../common/animations/drop-down.animation';
 import { MessageDialogComponent } from '../../common/components/message-dialog/message-dialog.component';
 import { LocalStorageConstants } from '../../common/constants/local-storage.constants';
+import { SignalRConstants } from '../../common/constants/signal-r.constants';
 import { Message } from '../../common/models/message.model';
 import { MessagesService } from '../../common/services/messages.service';
+import { SignalRService } from '../../common/services/signal-r.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +28,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private readonly dialog: MatDialog,
-    private readonly messagesService: MessagesService
+    private readonly messagesService: MessagesService,
+    private readonly signalRService: SignalRService,
+    private readonly toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +42,26 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe();
+
+    this.signalRService.startConnection();
+    this.signalRService.addListener(
+      SignalRConstants.NewMessageSignal,
+      (recipient: string) => {
+        if (recipient == localStorage.getItem(LocalStorageConstants.UserName)) {
+          this.toastr.warning('', 'New message!');
+          this.messagesService
+            .getAllUserMessages(
+              localStorage.getItem(LocalStorageConstants.UserName)
+            )
+            .pipe(
+              tap((messages) => {
+                this.messages = messages;
+              })
+            )
+            .subscribe();
+        }
+      }
+    );
   }
 
   get userName() {
