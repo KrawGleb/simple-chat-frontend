@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="info-message">
+    <div>
+      <h2>Hello, {{userName}}</h2>
+      <h3>Your messages are shown here</h3>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="message-button"
+      (click)="openWriteMailDialog()"
+    >
+      <mat-icon>mail</mat-icon>
+
+      Write
+    </button>
+  </div>
+
+  <hr />
+
+  <app-message-card
+    *ngFor="let message of messages"
+    [theme]="message.theme"
+    [from]="message.from.name"
+    [content]="message.content"
+  ></app-message-card>
+</div>

@@ -1,0 +1,19 @@
+<mat-card class="mb-1">
+  <div class="card">
+    <div>
+      <mat-card-title class="card_title">{{ theme }}</mat-card-title>
+      <mat-card-subtitle>From {{ from }}</mat-card-subtitle>
+    </div>
+    <div class="more_button">
+      <button mat-button (click)="isOpen = !isOpen">
+        <mat-icon>expand_more</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <mat-card-content class="card_content" *ngIf="isOpen" [@dropDown]>
+    <div class="content-item">
+      {{ content }}
+    </div>
+  </mat-card-content>
+</mat-card>

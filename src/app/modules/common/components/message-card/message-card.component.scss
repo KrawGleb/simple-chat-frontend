@@ -1,0 +1,23 @@
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+  mat-card-subtitle {
+    margin: 0;
+  }
+}
+
+.card_title {
+  font-size: 15px;
+}
+
+.card_content {
+  margin-top: 6px;
+}
+
+.more_button {
+  display: flex;
+  align-items: center;
+}
