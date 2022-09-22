@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>New mail</h1>
+
+<div mat-dialog-content>
+  <div>
+    <mat-form-field class="dialog-input">
+      <mat-label>Recipient</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="dialog-input">
+      <mat-label>Content</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="cancelClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="'close'" cdkFocusInitial>Send</button>
+</div>

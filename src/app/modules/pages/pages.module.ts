@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { AppCommonModule } from '../common/common.module';
@@ -21,6 +22,7 @@ import { AppCommonModule } from '../common/common.module';
     MatInputModule,
     MatCardModule,
     MatIconModule,
+    MatDialogModule,
     NgbTypeaheadModule,
     AppCommonModule,
   ]

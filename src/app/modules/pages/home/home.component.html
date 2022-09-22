@@ -1,10 +1,27 @@
 <div class="container">
   <div class="info-message">
-    <h2>Hello, Username</h2>
-    <h3>Here are your messages</h3>
+    <div>
+      <h2>Hello, Username</h2>
+      <h3>Your messages are shown here</h3>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="message-button"
+      (click)="openWriteMailDialog()"
+    >
+      <mat-icon>mail</mat-icon>
+
+      Write
+    </button>
   </div>
 
   <hr />
 
-  <app-message-card [theme]="'Theme'" [from]="'From'" [content]="'Content'"></app-message-card>
+  <app-message-card
+    [theme]="'Theme'"
+    [from]="'From'"
+    [content]="'Content'"
+  ></app-message-card>
 </div>

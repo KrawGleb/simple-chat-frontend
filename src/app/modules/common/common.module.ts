@@ -5,10 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 
 @NgModule({
   declarations: [
-    MessageCardComponent
+    MessageCardComponent,
+    MessageDialogComponent
   ],
   imports: [
     CommonModule,
@@ -16,9 +19,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatCardModule,
     MatIconModule,
+    MatDialogModule
   ],
   exports: [
-    MessageCardComponent
+    MessageCardComponent,
+    MessageDialogComponent
   ]
 })
 export class AppCommonModule { }
