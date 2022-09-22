@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,10 @@ import { MessageDialogComponent } from './components/message-dialog/message-dial
     MatInputModule,
     MatCardModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    NgbTypeaheadModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     MessageCardComponent,

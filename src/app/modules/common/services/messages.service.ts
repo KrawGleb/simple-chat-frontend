@@ -18,6 +18,6 @@ export class MessagesService {
   }
 
   public sendMessage(message: Message): Observable<void> {
-    return this.httpService.post('/messages', message);
+    return this.httpService.post('/messages', { message });
   }
 }

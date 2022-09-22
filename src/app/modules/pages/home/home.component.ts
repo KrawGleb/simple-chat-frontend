@@ -33,8 +33,6 @@ export class HomeComponent implements OnInit {
       .getAllUserMessages(localStorage.getItem(LocalStorageConstants.UserName))
       .pipe(
         tap((messages) => {
-          console.log('get messages');
-          console.log(messages);
           this.messages = messages;
         })
       )
