@@ -1,7 +1,7 @@
 <div class="container">
   <div class="info-message">
     <div>
-      <h2>Hello, Username</h2>
+      <h2>Hello, {{userName}}</h2>
       <h3>Your messages are shown here</h3>
     </div>
 
@@ -20,8 +20,9 @@
   <hr />
 
   <app-message-card
-    [theme]="'Theme'"
-    [from]="'From'"
-    [content]="'Content'"
+    *ngFor="let message of messages"
+    [theme]="message.theme"
+    [from]="message.from.name"
+    [content]="message.content"
   ></app-message-card>
 </div>

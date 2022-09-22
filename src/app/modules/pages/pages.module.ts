@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { AppCommonModule } from '../common/common.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,8 @@ import { AppCommonModule } from '../common/common.module';
     MatDialogModule,
     NgbTypeaheadModule,
     AppCommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }
