@@ -6,27 +6,31 @@
       <mat-form-field class="dialog-input">
         <mat-label>Recipient</mat-label>
         <input matInput formControlName="recipient" [ngbTypeahead]="search" />
+        <mat-error *ngIf="hasError('recipient', 'required')">Recipient is required</mat-error>
+        <mat-error *ngIf="hasError('recipient', 'unknownUser')">Unknown user</mat-error>
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field class="dialog-input">
         <mat-label>Theme</mat-label>
-        <input matInput formControlName="theme" />
+        <input matInput formControlName="theme"/>
+        <mat-error *ngIf="hasError('theme', 'required')">Theme is required</mat-error>
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field class="dialog-input">
         <mat-label>Content</mat-label>
-        <textarea matInput formControlName="content"></textarea>
+        <textarea matInput formControlName="content" required></textarea>
+        <mat-error *ngIf="hasError('content', 'required')">Content is required</mat-error>
       </mat-form-field>
     </div>
   </div>
 
   <div mat-dialog-actions>
     <button mat-button (click)="cancelClick()">Cancel</button>
-    <button mat-button (click)="sendClick()" cdkFocusInitial>
+    <button mat-button (click)="sendClick()" cdkFocusInitial [disabled]="formGroup.invalid">
       Send
     </button>
   </div>

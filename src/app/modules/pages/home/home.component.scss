@@ -1,6 +1,10 @@
+body {
+  background-color: white;
+}
+
 .container {
   background-color: rgb(250, 250, 250);
-  height: 100vh;
+  min-height: 100vh;
   padding: 2%;
 }
 
@@ -16,5 +20,11 @@
 
 .message-button {
   width: 100px;
+  margin-right: 4px;
+  padding: 4px;
+}
+
+.logout-button {
+  padding: 4px;
 }
 
