@@ -5,8 +5,9 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 import { dropDownAnimation } from '../../common/animations/drop-down.animation';
@@ -21,6 +22,7 @@ import { SignalRService } from '../../common/services/signal-r.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
   public isOpen = false;
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
     private readonly messagesService: MessagesService,
     private readonly signalRService: SignalRService,
     private readonly toastr: ToastrService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -73,5 +76,10 @@ export class HomeComponent implements OnInit {
       width: '35%',
       data: {},
     });
+  }
+
+  public logout() {
+    localStorage.removeItem(LocalStorageConstants.UserName);
+    this.router.navigateByUrl('/login');
   }
 }

@@ -1,20 +1,31 @@
 <div class="container">
   <div class="info-message">
     <div>
-      <h2>Hello, {{userName}}</h2>
+      <h2>Hello, {{ userName }}</h2>
       <h3>Your messages are shown here</h3>
     </div>
 
-    <button
-      mat-raised-button
-      color="primary"
-      class="message-button"
-      (click)="openWriteMailDialog()"
-    >
-      <mat-icon>mail</mat-icon>
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="message-button mr-2 pr-2"
+        (click)="openWriteMailDialog()"
+      >
+        <mat-icon>mail</mat-icon>
 
-      Write
-    </button>
+        Write
+      </button>
+
+      <button
+        mat-raised-button
+        color="warn"
+        class="logout-button"
+        (click)="logout()"
+      >
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
   </div>
 
   <hr />
