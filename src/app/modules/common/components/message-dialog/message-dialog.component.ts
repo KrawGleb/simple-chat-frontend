@@ -1,5 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlContainer,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { debounceTime, distinctUntilChanged, map, Observable, tap } from 'rxjs';
 import { LocalStorageConstants } from '../../constants/local-storage.constants';
@@ -17,9 +23,12 @@ import { ToastrService } from 'ngx-toastr';
 export class MessageDialogComponent implements OnInit {
   public userNames: string[] = [];
   public formGroup = new FormGroup({
-    recipient: new FormControl(),
-    theme: new FormControl(),
-    content: new FormControl(),
+    recipient: new FormControl('', [
+      Validators.required,
+      this.getRecipientValidator(),
+    ]),
+    theme: new FormControl('', [Validators.required]),
+    content: new FormControl('', [Validators.required]),
   });
 
   constructor(
@@ -66,6 +75,22 @@ export class MessageDialogComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  public hasError(controlName: string, errorName: string) {
+    return this.formGroup.get(controlName)?.hasError(errorName);
+  }
+
+  public getRecipientValidator() {
+    return (recipientControl: AbstractControl) => {
+      if (!recipientControl.value) {
+        return null;
+      }
+
+      return this.userNames.indexOf(recipientControl.value) > -1
+        ? null
+        : { unknownUser: true };
+    };
   }
 
   public search = (text$: Observable<string>) =>
